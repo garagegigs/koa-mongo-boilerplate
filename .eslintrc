@@ -1,0 +1,27 @@
+{
+  "extends": "eslint-config-standard",
+  "parser": "babel-eslint",
+
+  "env": {
+    "mocha": true
+  },
+
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+  //   "comma-dangle": ["error", {
+  //     "arrays": "always-multiline",
+  //     "objects": "always-multiline",
+  //     "imports": "only-multiline",
+  //     "exports": "only-multiline",
+  //     "functions": "never"
+  //   }]
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+logs/
+data/
+*.log
+npm-debug.log*
+.DS_Store
+.git/
+.git*
+.nyc_putput
+coverage
+types/
+env
