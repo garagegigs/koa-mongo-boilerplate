@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "assert": "^1.4.1",
     "axios": "^0.16.0",
     "babel-core": "^6.24.0",
     "babel-generator": "^6.24.0",
@@ -119,9 +120,9 @@
     "extension": [
       ".js"
     ],
-    "lines": 75,
-    "functions": 75,
-    "statements": 75,
+    "lines": 95,
+    "functions": 95,
+    "statements": 95,
     "check-coverage": true,
     "report-dir": "./test/coverage",
     "require": [

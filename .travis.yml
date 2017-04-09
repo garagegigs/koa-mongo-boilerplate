@@ -1,0 +1,10 @@
+sudo: required
+language: node_js
+node_js:
+  - 7.7
+services:
+  - mongodb
+before_script:
+  - sleep 15
+script:
+  - npm run cover

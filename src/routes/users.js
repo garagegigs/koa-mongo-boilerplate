@@ -1,9 +1,8 @@
 // @flow
 import Router from 'koa-router'
 import monk from 'monk'
+import Boom from 'boom'
 import config from '../config'
-
-// const debug = require('debug')('srv.gigs.users:users')
 
 const db = monk(config.database.url)
 const User = db.get('users')
@@ -22,8 +21,8 @@ router.post('/', async (ctx) => {
 
   const inserted = await User.insert(input)
 
-  if (!inserted) {
-    ctx.throw(405, 'Unable to add new user.')
+  if (inserted === null || inserted.hasOwnProperty('lastErrorObject')) {
+    throw new Boom.methodNotAllowed('Unable to create user') // eslint-disable-line new-cap
   }
 
   ctx.body = input
@@ -33,7 +32,7 @@ router.get('/:id', async (ctx) => {
   const user = await User.findOne({ _id: ctx.params.id })
 
   if (user === null) {
-    ctx.throw(404, 'User doesn\'t exist')
+    throw new Boom.notFound('User doesn\'t exist') // eslint-disable-line new-cap
   }
 
   ctx.body = user
@@ -50,8 +49,9 @@ router.put('/:id', async (ctx) => {
 router.del('/:id', async (ctx) => {
   const removed = await User.findOneAndDelete({ '_id': ctx.params.id })
 
-  if (!removed) {
-    ctx.throw(405, 'Unable to delete user')
+  if (removed === null || removed.hasOwnProperty('lastErrorObject')) {
+    // { lastErrorObject: { n: 0 }, value: null, ok: 1 }
+    throw new Boom.methodNotAllowed('Unable to delete user') // eslint-disable-line new-cap
   }
 
   ctx.body = removed

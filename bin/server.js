@@ -31,7 +31,7 @@ const port = normalizePort(config.port || '3000')
 /**
  * Create HTTP server.
  */
-let server;
+let server
 if (process.env.NODE === 'test') {
   // const server = app.listen(port, () => resolve(server))
   server = http.createServer(app.callback())
@@ -54,7 +54,7 @@ server.on('listening', onListening)
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
+function normalizePort (val) {
   const port = parseInt(val, 10) // eslint-disable-line no-shadow
 
   if (isNaN(port)) {
@@ -74,7 +74,7 @@ function normalizePort(val) {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError (error) {
   if (error.syscall !== 'listen') {
     throw error
   }
@@ -102,7 +102,7 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
+function onListening () {
   const addr = server.address()
   const bind = typeof addr === 'string'
     ? `pipe ${addr}`

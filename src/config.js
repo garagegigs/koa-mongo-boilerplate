@@ -16,7 +16,7 @@ const environment = {
     port: 3000,
     logger: {
       enabled: true,
-      level: 'trace'
+      level: 'silent'
     },
     database: {
       url: 'mongodb://localhost:27017/test'

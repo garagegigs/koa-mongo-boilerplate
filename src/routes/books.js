@@ -1,6 +1,7 @@
 // @flow
 import Router from 'koa-router'
 import monk, { Monk, Collection } from 'monk'
+import Boom from 'boom'
 import config from '../config'
 
 import type { Context } from 'koa'
@@ -23,8 +24,8 @@ router.post('/', async (ctx: Context) => {
 
   const inserted = await Book.insert(input)
 
-  if (!inserted) {
-    ctx.throw(405, 'Unable to add new book.')
+  if (inserted === null || inserted.hasOwnProperty('lastErrorObject')) {
+    throw new Boom.methodNotAllowed('Unable to create book') // eslint-disable-line new-cap
   }
 
   ctx.body = input
@@ -34,7 +35,7 @@ router.get('/:id', async (ctx: Context) => {
   const book = await Book.findOne({ _id: ctx.params.id })
 
   if (book === null) {
-    ctx.throw(404, 'Book doesn\'t exist')
+    throw new Boom.notFound('Book doesn\'t exist') // eslint-disable-line new-cap
   }
 
   ctx.body = book
@@ -51,8 +52,8 @@ router.put('/:id', async (ctx: Context) => {
 router.del('/:id', async (ctx: Context) => {
   const removed = await Book.findOneAndDelete({ '_id': ctx.params.id })
 
-  if (!removed) {
-    ctx.throw(405, 'Unable to delete book')
+  if (removed === null || removed.hasOwnProperty('lastErrorObject')) {
+    throw new Boom.methodNotAllowed('Unable to delete book') // eslint-disable-line new-cap
   }
 
   ctx.body = removed

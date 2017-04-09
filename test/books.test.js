@@ -64,3 +64,19 @@ test.serial('Delete book', async t => {
   t.is(res.status, 200)
 })
 
+
+test.serial('Get book', async t => {
+  t.plan(1)
+
+  const res = await request.get(`/books/${newBook._id}`)
+
+  t.is(res.status, 404)
+})
+
+test.serial('Book already deleted should return an error 405', async t => {
+  t.plan(1)
+
+  const res = await request.delete(`/books/${newBook._id}`)
+
+  t.is(res.status, 405)
+})
