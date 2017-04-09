@@ -1,8 +1,7 @@
 {
-  "name": "users",
+  "name": "koa-mongo-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "DEBUG=koa*,srv* NODE_ENV=development node ./bin/server.js | pino",
     "benchmark": "NODE_ENV=development node ./benchmark/index.js | pino",
