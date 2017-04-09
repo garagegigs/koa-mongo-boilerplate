@@ -21,7 +21,7 @@ router.post('/', async (ctx) => {
 
   const inserted = await User.insert(input)
 
-  if (inserted === null || inserted.hasOwnProperty('lastErrorObject')) {
+  if (inserted === null || (inserted.value === null && inserted.ok === 1)) {
     throw new Boom.methodNotAllowed('Unable to create user') // eslint-disable-line new-cap
   }
 
@@ -49,8 +49,7 @@ router.put('/:id', async (ctx) => {
 router.del('/:id', async (ctx) => {
   const removed = await User.findOneAndDelete({ '_id': ctx.params.id })
 
-  if (removed === null || removed.hasOwnProperty('lastErrorObject')) {
-    // { lastErrorObject: { n: 0 }, value: null, ok: 1 }
+  if (removed === null || (removed.value === null && removed.ok === 1)) {
     throw new Boom.methodNotAllowed('Unable to delete user') // eslint-disable-line new-cap
   }
 

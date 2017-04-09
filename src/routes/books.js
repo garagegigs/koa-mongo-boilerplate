@@ -24,7 +24,7 @@ router.post('/', async (ctx: Context) => {
 
   const inserted = await Book.insert(input)
 
-  if (inserted === null || inserted.hasOwnProperty('lastErrorObject')) {
+  if (inserted === null || (inserted.value === null && inserted.ok === 1)) {
     throw new Boom.methodNotAllowed('Unable to create book') // eslint-disable-line new-cap
   }
 
@@ -52,7 +52,7 @@ router.put('/:id', async (ctx: Context) => {
 router.del('/:id', async (ctx: Context) => {
   const removed = await Book.findOneAndDelete({ '_id': ctx.params.id })
 
-  if (removed === null || removed.hasOwnProperty('lastErrorObject')) {
+  if (removed === null || (removed.value === null && removed.ok === 1)) {
     throw new Boom.methodNotAllowed('Unable to delete book') // eslint-disable-line new-cap
   }
 

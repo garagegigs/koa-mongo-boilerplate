@@ -1,3 +1,4 @@
+// @flow
 import test from 'ava'
 import supertest from 'supertest'
 import app from '../src/app'

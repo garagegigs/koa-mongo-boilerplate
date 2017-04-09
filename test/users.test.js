@@ -1,3 +1,4 @@
+// @flow
 import test from 'ava'
 import supertest from 'supertest'
 import app from '../src/app'
@@ -76,10 +77,7 @@ test.serial('Get user', async t => {
 test.serial('User already deleted should return an error 405', async t => {
   t.plan(1)
 
-  const res = await request.delete(`/users/aaaaaaaaaaaaaaaaaaaaaaaa`)
-
-  console.log('res.status', res.status)
-  console.log('res.body', res.body)
+  const res = await request.delete('/users/aaaaaaaaaaaaaaaaaaaaaaaa')
 
   t.is(res.status, 405)
 })
