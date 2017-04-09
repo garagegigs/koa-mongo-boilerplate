@@ -78,5 +78,8 @@ test.serial('User already deleted should return an error 405', async t => {
 
   const res = await request.delete(`/users/aaaaaaaaaaaaaaaaaaaaaaaa`)
 
+  console.log('res.status', res.status)
+  console.log('res.body', res.body)
+
   t.is(res.status, 405)
 })

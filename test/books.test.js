@@ -76,6 +76,8 @@ test.serial('Get book', async t => {
 test.serial('Book already deleted should return an error 405', async t => {
   t.plan(1)
 
+  await Book.remove({})
+
   const res = await request.delete(`/books/${newBook._id}`)
 
   t.is(res.status, 405)
