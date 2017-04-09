@@ -16,14 +16,14 @@ const environment = {
     port: 3000,
     logger: {
       enabled: true,
-      level: 0
+      level: 'trace'
     },
     database: {
-      client: 'sqlite3'
+      url: 'mongodb://localhost:27017/test'
     },
     redis: {
       port: process.env.REDIS_PORT || '6379',
-      host: process.env.REDIS_HOST || 'gigs-boilerplate-redis',
+      host: process.env.REDIS_HOST || 'gigs-boilerplate-redis'
     }
   }
 }[process.env.NODE_ENV || 'development']

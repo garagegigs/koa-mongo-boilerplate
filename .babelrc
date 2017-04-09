@@ -1,7 +1,9 @@
 {
   "presets": [
-    "env",
-    "es2015"
+    "es2015",
+    "stage-0",
+    "@ava/stage-4",
+    "@ava/transform-test-files"
   ],
   "plugins": [
     "transform-flow-strip-types",
@@ -18,9 +20,6 @@
   ],
   "env": {
     "test": {
-      "presets": [
-        "es2015"
-      ],
       "plugins": [
         "istanbul"
       ]

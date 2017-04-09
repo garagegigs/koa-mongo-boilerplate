@@ -7,6 +7,7 @@ import type { Context } from 'koa'
 
 const db: Monk = monk(config.database.url)
 const Book: Collection = db.get('books')
+
 const router: Router = new Router()
 
 router.prefix('/books')
